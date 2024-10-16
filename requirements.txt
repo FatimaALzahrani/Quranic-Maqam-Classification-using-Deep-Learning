@@ -1,4 +1,4 @@
 Flask==2.0.2
 tensorflow==2.16.1
-numpy==1.19.5
+numpy>=1.23.5
 librosa==0.8.1
