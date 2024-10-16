@@ -1,4 +1,6 @@
-Flask==2.0.2
+Flask>=2.0.0
 tensorflow==2.16.1
 numpy>=1.23.5
 librosa==0.8.1
+Werkzeug==0.16.1
+
