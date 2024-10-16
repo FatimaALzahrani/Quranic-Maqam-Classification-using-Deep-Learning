@@ -33,12 +33,10 @@ Additionally, the project includes a web interface to allow users to upload Qura
 - **Librosa** (Audio feature extraction)
 - **Google Colab** (Model Training)
 - **HTML/CSS/JavaScript** (Frontend for web interface)
-- **GitHub Pages** (Frontend hosting)
-- **Heroku** or **PythonAnywhere** (Backend hosting)
+- **Render** (Backend hosting)
 
 ## Maqam Classes
 The following Quranic maqams are classified by the model:
-
 - Ajam = عجم
 - Bayat = بيات
 - Hijaz = حجاز
