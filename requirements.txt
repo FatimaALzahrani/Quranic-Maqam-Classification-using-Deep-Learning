@@ -2,4 +2,4 @@ Flask
 numpy
 tensorflow
 librosa
-sklearn
+scikit-learn
