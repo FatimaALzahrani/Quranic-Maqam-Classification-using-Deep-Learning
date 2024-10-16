@@ -1,5 +1,5 @@
 #   Classification using Deep Learning
-   ![header](https://capsule-render.vercel.app/api?type=waving&color=F79EC9&height=300&section=header&text=Quranic%20Maqam%20Classification%20usting%DL&descAlignY=51&descAlign=62)
+   ![header](https://capsule-render.vercel.app/api?type=waving&color=F79EC9&height=300&section=header&text=Maqam%20Classification&descAlignY=51&descAlign=62)
 
 
 This project aims to classify Quranic maqams using deep learning techniques. A **Deep Neural Network (DNN)** model was trained on the **Maqam-478 Dataset**, consisting of various Quranic recitations, to automatically predict the maqam of a given audio file. The system utilizes **Mel-frequency cepstral coefficients (MFCC)** for audio feature extraction.
