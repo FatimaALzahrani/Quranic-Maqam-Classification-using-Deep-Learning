@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تصنيف مقامات القرآن الكريم</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>تصنيف مقامات القرآن الكريم</h1>
+      <form id="upload-form">
+        <input type="file" name="audio_file" accept="audio/*" required />
+        <button type="submit">إرسال</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <footer>
+      &copy; 2024. بواسطة
+      <a href="https://fatimamohammedalzahrani.on.drv.tw/My/My.html"
+        >فاطمة الزهراني</a
+      >
+    </footer>
+
+    <div id="loading">
+      <div class="loader"></div>
+    </div>
+
+    <script>
+      document.getElementById("upload-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        document.getElementById("loading").style.display = "block";
+
+        const response = await fetch("/predict", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        document.getElementById("loading").style.display = "none";
+
+        document.getElementById("result").innerText =
+          data.error || `المقام المتوقع: ${data.maqam}`;
+      };
+    </script>
+  </body>
+</html>
