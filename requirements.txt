@@ -3,3 +3,4 @@ numpy
 tensorflow
 librosa
 scikit-learn
+flask-cors
