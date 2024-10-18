@@ -111,7 +111,7 @@
         color: #632755;
         font-family: "Rubik", sans-serif;
         padding: 10px 20px;
-        border: none;
+        border: 2px solid #5d1f4e;
         border-radius: 5px;
         font-size: 18px;
         cursor: pointer;
@@ -2688,5 +2688,18 @@
       @keyframes tick {
         to {
           transform: scale(1) rotate(-90deg);
+        }
+      }
+
+      #staticbtn {
+        display: none;
+      }
+
+      @media (max-width: 500px) {
+        #staticbtn {
+          display: block;
+        }
+        #animbtn {
+          display: none;
         }
       }

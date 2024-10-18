@@ -19,7 +19,7 @@
       <h1>تصنيف مقامات القرآن الكريم</h1>
       <form id="upload-form">
         <input type="file" name="audio_file" accept="audio/*" required />
-        <div class="button">
+        <div class="button" id="animbtn">
           <input id="button" type="checkbox" />
           <label for="button">
             <button class="button_inner q" type="submit">
@@ -85,6 +85,7 @@
             </button>
           </label>
         </div>
+        <button type="submit" id="staticbtn">إرسال</button>
       </form>
       <div id="result"></div>
     </div>
@@ -105,9 +106,10 @@
         e.preventDefault();
         const formData = new FormData(e.target);
 
+        document.getElementById("button").checked = true; // تعيين checkbox كـ checked
         document.getElementById("loading").style.display = "block";
 
-        const response = await fetch("http://127.0.0.1:5000/predict", {
+        const response = await fetch("/predict", {
           method: "POST",
           body: formData,
         });
@@ -115,6 +117,8 @@
         const data = await response.json();
 
         document.getElementById("loading").style.display = "none";
+        document.getElementById("button").checked = false;
+        document.getElementById("button").innerText = "إرسال مره أخرى";
 
         document.getElementById("result").innerText =
           data.error ||
