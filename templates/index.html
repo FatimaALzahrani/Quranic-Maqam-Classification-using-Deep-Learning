@@ -10,11 +10,81 @@
     />
   </head>
   <body>
+    <div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
     <div class="container">
       <h1>تصنيف مقامات القرآن الكريم</h1>
       <form id="upload-form">
         <input type="file" name="audio_file" accept="audio/*" required />
-        <button type="submit">إرسال</button>
+        <div class="button">
+          <input id="button" type="checkbox" />
+          <label for="button">
+            <button class="button_inner q" type="submit">
+              <i class="l ion-log-in"></i>
+              <span class="t">إرسال</span>
+              <span>
+                <i class="tick ion-checkmark-round"></i>
+              </span>
+              <div class="b_l_quad">
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+              </div>
+            </button>
+          </label>
+        </div>
       </form>
       <div id="result"></div>
     </div>
@@ -37,7 +107,7 @@
 
         document.getElementById("loading").style.display = "block";
 
-        const response = await fetch("/predict", {
+        const response = await fetch("http://127.0.0.1:5000/predict", {
           method: "POST",
           body: formData,
         });
@@ -47,7 +117,8 @@
         document.getElementById("loading").style.display = "none";
 
         document.getElementById("result").innerText =
-          data.error || `المقام المتوقع: ${data.maqam}`;
+          data.error ||
+          `المقام المتوقع: ${data.maqam} (بنسبة: ${data.confidence}%)`;
       };
     </script>
   </body>

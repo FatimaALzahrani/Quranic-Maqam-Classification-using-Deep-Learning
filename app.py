@@ -4,8 +4,9 @@ import librosa
 import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import os
-
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -68,9 +69,11 @@ def predict():
     
     predicted_maqam = encoder.inverse_transform([np.argmax(prediction)])[0]
     
+    confidence = np.max(prediction) * 100 
+    
     translated_maqam = maqam_translation.get(predicted_maqam, 'غير معروف')
 
-    return jsonify({'maqam': translated_maqam})
+    return jsonify({'maqam': translated_maqam, 'confidence': round(confidence, 2)})
 
 if __name__ == '__main__':
     app.run(debug=True)
