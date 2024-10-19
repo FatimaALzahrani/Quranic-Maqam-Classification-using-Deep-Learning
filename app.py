@@ -49,37 +49,31 @@ maqam_translation = {
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'audio_file' not in request.files:
-        print("No file part")
         return jsonify({'error': 'No file part'}) 
     
     file = request.files['audio_file']
     if file.filename == '':
-        print("No selected file")
         return jsonify({'error': 'No selected file'})
     
-    if not os.path.exists(app.config['UPLOAD_FOLDER']):
-        os.makedirs(app.config['UPLOAD_FOLDER'])
-
-    audio_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+    audio_path = os.path.join('uploads', file.filename)
     file.save(audio_path)  
     
-    print(f"Saved file to {audio_path}")
+    features = extract_features(audio_path).reshape(1, -1)
     
-    features = extract_features(audio_path)
     if features is None:
-        print("Failed to extract features")
         return jsonify({'error': 'Failed to extract features'}) 
     
-    features_scaled = scaler.transform(features.reshape(1, -1))
-
+    features_scaled = scaler.transform(features)
+    
     prediction = model.predict(features_scaled)
     
     predicted_maqam = encoder.inverse_transform([np.argmax(prediction)])[0]
+    
     confidence = np.max(prediction) * 100 
+    
     translated_maqam = maqam_translation.get(predicted_maqam, 'غير معروف')
 
     return jsonify({'maqam': translated_maqam, 'confidence': round(confidence, 2)})
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
