@@ -28,6 +28,60 @@
               <span>
                 <i class="tick ion-checkmark-round"></i>
               </span>
+              <div class="b_l_quad">
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+                <div class="button_spots"></div>
+              </div>
             </button>
           </label>
         </div>
@@ -55,29 +109,20 @@
         document.getElementById("button").checked = true;
         document.getElementById("loading").style.display = "block";
 
-        try {
-          const response = await fetch("/predict", {
-            method: "POST",
-            body: formData,
-          });
+        const response = await fetch("/predict", {
+          method: "POST",
+          body: formData,
+        });
 
-          if (!response.ok) {
-            throw new Error("Failed to fetch");
-          }
+        const data = await response.json();
 
-          const data = await response.json();
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("button").checked = false;
+        document.getElementById("button").innerText = "إرسال مره أخرى";
 
-          document.getElementById("loading").style.display = "none";
-          document.getElementById("button").checked = false;
-
-          document.getElementById("result").innerText =
-            data.error ||
-            `المقام المتوقع: ${data.maqam} (بنسبة: ${data.confidence}%)`;
-        } catch (error) {
-          console.error("Error:", error);
-          document.getElementById("result").innerText = "حدث خطأ أثناء التحميل";
-        }
+        document.getElementById("result").innerText =
+          data.error ||
+          `المقام المتوقع: ${data.maqam} (بنسبة: ${data.confidence}%)`;
       };
-    </script>
   </body>
 </html>
