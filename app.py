@@ -5,7 +5,6 @@ import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import os
 from flask_cors import CORS
-
 app = Flask(__name__)
 CORS(app)
 
@@ -20,7 +19,7 @@ encoder = LabelEncoder()
 encoder.classes_ = np.load('classes.npy')
 
 scaler = StandardScaler()
-scaler.mean_ = np.load('scaler_mean.npy')
+scaler.mean_ = np.load('scaler_mean.npy') 
 scaler.scale_ = np.load('scaler_scale.npy')
 
 def extract_features(file_name):
@@ -50,20 +49,29 @@ maqam_translation = {
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'audio_file' not in request.files:
+        print("No file part")
         return jsonify({'error': 'No file part'}) 
     
     file = request.files['audio_file']
     if file.filename == '':
+        print("No selected file")
         return jsonify({'error': 'No selected file'})
     
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+
     audio_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     file.save(audio_path)  
     
+    print(f"Saved file to {audio_path}")
+    
     features = extract_features(audio_path)
     if features is None:
+        print("Failed to extract features")
         return jsonify({'error': 'Failed to extract features'}) 
     
     features_scaled = scaler.transform(features.reshape(1, -1))
+
     prediction = model.predict(features_scaled)
     
     predicted_maqam = encoder.inverse_transform([np.argmax(prediction)])[0]
@@ -71,6 +79,7 @@ def predict():
     translated_maqam = maqam_translation.get(predicted_maqam, 'غير معروف')
 
     return jsonify({'maqam': translated_maqam, 'confidence': round(confidence, 2)})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
