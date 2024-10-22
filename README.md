@@ -1,4 +1,4 @@
-![header]([https://capsule-render.vercel.app/api?type=waving&color=F79EC9&height=300&section=header&text=Maqam%20Classification&descAlignY=51&descAlign=62](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&&customColorList=2,9,16,21,22&text=Quran%20Maqam%20Classification&section=header&reversal=true&textBg=false&fontAlign=50&fontSize=50)
+![header](https://capsule-render.vercel.app/api?type=waving&color=F79EC9&height=300&section=header&text=Maqam%20Classification&descAlignY=51&descAlign=62](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&&customColorList=2,9,16,21,22&text=Quran%20Maqam%20Classification&section=header&reversal=true&textBg=false&fontAlign=50&fontSize=50)
 
 ## Table of Contents
 
