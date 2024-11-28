@@ -63,7 +63,9 @@ You can access the deployed web interface here:
 ## Model Training and Code
 
 You can find the model training code in this Google Colab notebook:
-[Google Colab Code](https://colab.research.google.com/drive/1NzNl2Nadqwb653mWr_uySZKQ2Jn2l2fT?usp=sharing)
+- [Google Colab Code](https://colab.research.google.com/drive/1NzNl2Nadqwb653mWr_uySZKQ2Jn2l2fT?usp=sharing)
+- [Google Colab Code2](https://colab.research.google.com/drive/1A1ssDs_xnCpvBJ9kAcZEq_bH5-Mtu7Sg?usp=sharing)
+
 
 
 ## Setup Instructions
@@ -81,7 +83,7 @@ You can find the model training code in this Google Colab notebook:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/maqam-classification.git
+   git clone https://github.com/FatimaALzahrani/Quranic-Maqam-Classification-using-Deep-Learning.git
 
    ```
 
